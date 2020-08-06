@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+      integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk="
+      crossorigin="anonymous"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+    <title>Time waste</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <div style="text-align: center;">
+        <button
+          id="dumbQ"
+          class="btn btn-small packBtn"
+          style="background-color: #044343;"
+        >
+          Dumb Questions
+        </button>
+        <button
+          id="hindiHolly"
+          class="btn btn-small packBtn"
+          style="background-color: #6f4a8e;"
+        >
+          Hindi-Hollywood
+        </button>
+      </div>
+      <div id="cards-container" class="cards"></div>
+
+      <!-- Nav buttons -->
+      <div class="navigation">
+        <button id="prev" class="nav-button">
+          <i class="fas fa-arrow-left"></i>
+        </button>
+
+        <button id="next" class="nav-button">
+          <i class="fas fa-arrow-right"></i>
+        </button>
+      </div>
+      <div style="text-align: center;">
+        <button
+          id="create-room"
+          class="btn btn-small packBtn"
+          style="background-color: #086972;"
+        >
+          Create room
+        </button>
+        <button
+          id="join-room"
+          class="btn btn-small packBtn"
+          style="background-color: #4f8a8b;"
+        >
+          Join room
+        </button>
+      </div>
+      <!-- Create room form -->
+      <form
+        id="create-roomForm"
+        autocomplete="off"
+        style="display:none; text-align: center;"
+      >
+        <div class="form-control">
+          <input
+            class="form-inputs"
+            type="text"
+            name="username"
+            id="create-username"
+            required
+            placeholder="Random name"
+          />
+          <input
+            class="form-inputs"
+            type="number"
+            id="card_time"
+            required
+            placeholder="How many secs for each card?"
+          />
+        </div>
+      </form>
+      <!-- Join room form -->
+      <form
+        id="join-roomForm"
+        autocomplete="off"
+        style="display: none; text-align: center;"
+      >
+        <div class="form-control">
+          <input
+            class="form-inputs"
+            type="text"
+            id="join-username"
+            required
+            placeholder="Random name"
+          />
+          <input
+            class="form-inputs"
+            type="number"
+            id="roomId"
+            required
+            placeholder="roomId"
+          />
+        </div>
+      </form>
+      <!-- chat ui -->
+      <div class="progress-container" style="display: none;">
+        <div id="progress"></div>
+      </div>
+      <div class="chat-container" style="display: none;">
+        <div style="text-align: center;">
+          <p id="room-name" style="margin: 3px; font-weight: 700; float: left;">
+            Room name
+          </p>
+          <label class="ready-label"
+            >Ready?
+            <input id="ready" type="checkbox" />
+            <span class="checkmark"></span>
+          </label>
+          <button
+            style="float: right; border: 0;
+                   background-color: #ed6363;
+                   color: #e4e4e4;"
+            class="btn btn-small"
+            onclick="history.go(0)"
+          >
+            Leave Room
+          </button>
+        </div>
+        <main class="chat-main" style="display: none;">
+          <div style="width:30%" class="chat-sidebar">
+            <p style="margin: 0px; font-size: 13px;">Other dummies</p>
+            <ul id="users" style="padding: 0 0 0 3px; margin: 2px;"></ul>
+          </div>
+          <div class="chat-messages"></div>
+        </main>
+        <div class="chat-form-container">
+          <form id="chat-form">
+            <input
+              id="msg"
+              style="background: #dddddd; color: #4b5d67; width: 70%; font-size: 15px;"
+              class="form-inputs"
+              type="text"
+              placeholder="Enter Message"
+              required
+              autocomplete="off"
+            />
+            <button
+              style="border: 0;
+            padding: 7px;
+            color: #e4e4e4;
+            background-color: #219897;"
+              class="btn"
+            >
+              <i class="fas fa-paper-plane"></i> Send
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script type="module" src="cardPacks.js"></script>
+    <script type="module" src="utils.js"></script>
+    <script type="module" src="script.js"></script>
+  </body>
+</html>
